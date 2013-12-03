@@ -1,0 +1,60 @@
+﻿@model IEnumerable<tax2.vizov>
+
+@{
+    ViewBag.Title = "Вызов";
+}
+
+<h2>Вызов</h2>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        CreateDataTable();
+    });
+</script>
+
+<p>
+    @Html.ActionLink("Создать новый", "Create")
+</p>
+<table>
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.id_sotrudnika)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tip_vizova.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.zakaz.A)
+        </th>
+        <th></th>
+    </tr>
+        </thead>
+    <tbody>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.id_sotrudnika)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tip_vizova.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.zakaz.A)
+        </td>
+        <td>
+            @Html.ActionLink("Редактировать", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Детали", "Details", new { id=item.id }) |
+            @Html.ActionLink("Удалить", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+</tbody>
+</table>

@@ -1,0 +1,70 @@
+﻿@model tax2.vizov
+
+@{
+    ViewBag.Title = "Редактировать";
+}
+
+<h2>Редактировать</h2>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script type="text/javascript">
+    $(document).ready(function() 
+    {
+        $.datepicker.setDefaults({ changeYear: true }, $.extend($.datepicker.regional["ru"]));
+        $("#date").datepicker();
+    });
+</script>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>vizov</legend>
+
+        @Html.HiddenFor(model => model.id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.date)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.date)
+            @Html.ValidationMessageFor(model => model.date)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.id_sotrudnika)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.id_sotrudnika)
+            @Html.ValidationMessageFor(model => model.id_sotrudnika)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.id_tip_vizova, "tip_vizova")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("id_tip_vizova", String.Empty)
+            @Html.ValidationMessageFor(model => model.id_tip_vizova)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.id_zakaza, "zakaz")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("id_zakaza", String.Empty)
+            @Html.ValidationMessageFor(model => model.id_zakaza)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+

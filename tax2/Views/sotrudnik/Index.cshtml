@@ -1,0 +1,54 @@
+﻿@model IEnumerable<tax2.sotrudnik>
+
+@{
+    ViewBag.Title = "Сотрудник";
+}
+
+<h2>Сотрудник</h2>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        CreateDataTable();
+    });
+</script>
+
+<p>
+    @Html.ActionLink("Создать новый", "Create")
+</p>
+<table>
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.first_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.last_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.doljnost)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+
+    <tbody>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.first_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.last_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.doljnost)
+        </td>
+        <td>
+            @Html.ActionLink("Редактировать", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Детали", "Details", new { id=item.id }) |
+            @Html.ActionLink("Удалить", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+</tbody>
+</table>

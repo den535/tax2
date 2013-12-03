@@ -1,0 +1,36 @@
+﻿@model tax2.tc
+
+@{
+    ViewBag.Title = "Детали";
+}
+
+<h2>Детали</h2>
+
+<fieldset>
+    <legend>tc</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.color)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.color)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.nomer)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.nomer)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.marka)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.marka)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

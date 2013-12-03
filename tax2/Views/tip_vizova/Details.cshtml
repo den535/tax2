@@ -1,0 +1,29 @@
+﻿@model tax2.tip_vizova
+
+@{
+    ViewBag.Title = "Детали";
+}
+
+<h2>Детали</h2>
+
+<fieldset>
+    <legend>tip_vizova</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.vxod_vixod)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.vxod_vixod)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

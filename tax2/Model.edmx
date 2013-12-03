@@ -1,0 +1,367 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище tax2Model" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="Хранилище tax2ModelContainer">
+          <EntitySet Name="sotrudnik" EntityType="Хранилище tax2Model.sotrudnik" store:Type="Tables" Schema="tax2" />
+          <EntitySet Name="tc" EntityType="Хранилище tax2Model.tc" store:Type="Tables" Schema="tax2" />
+          <EntitySet Name="tip_vizova" EntityType="Хранилище tax2Model.tip_vizova" store:Type="Tables" Schema="tax2" />
+          <EntitySet Name="vizov" EntityType="Хранилище tax2Model.vizov" store:Type="Tables" Schema="tax2" />
+          <EntitySet Name="zakaz" EntityType="Хранилище tax2Model.zakaz" store:Type="Tables" Schema="tax2" />
+          <AssociationSet Name="vizov_ibfk_1" Association="Хранилище tax2Model.vizov_ibfk_1">
+            <End Role="tip_vizova" EntitySet="tip_vizova" />
+            <End Role="vizov" EntitySet="vizov" />
+          </AssociationSet>
+          <AssociationSet Name="vizov_ibfk_2" Association="Хранилище tax2Model.vizov_ibfk_2">
+            <End Role="zakaz" EntitySet="zakaz" />
+            <End Role="vizov" EntitySet="vizov" />
+          </AssociationSet>
+          <AssociationSet Name="vizov_ibfk_3" Association="Хранилище tax2Model.vizov_ibfk_3">
+            <End Role="sotrudnik" EntitySet="sotrudnik" />
+            <End Role="vizov" EntitySet="vizov" />
+          </AssociationSet>
+          <AssociationSet Name="zakaz_ibfk_1" Association="Хранилище tax2Model.zakaz_ibfk_1">
+            <End Role="sotrudnik" EntitySet="sotrudnik" />
+            <End Role="zakaz" EntitySet="zakaz" />
+          </AssociationSet>
+          <AssociationSet Name="zakaz_ibfk_2" Association="Хранилище tax2Model.zakaz_ibfk_2">
+            <End Role="tc" EntitySet="tc" />
+            <End Role="zakaz" EntitySet="zakaz" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="sotrudnik">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="first_name" Type="text" Nullable="false" />
+          <Property Name="last_name" Type="text" Nullable="false" />
+          <Property Name="doljnost" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tc">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="color" Type="text" Nullable="false" />
+          <Property Name="nomer" Type="int" Nullable="false" />
+          <Property Name="marka" Type="varchar" Nullable="false" MaxLength="11" />
+        </EntityType>
+        <EntityType Name="tip_vizova">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="text" Nullable="false" />
+          <Property Name="vxod/vixod" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vizov">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="date" Type="datetime" Nullable="false" />
+          <Property Name="id_sotrudnika" Type="int" Nullable="false" />
+          <Property Name="id_tip_vizova" Type="int" Nullable="false" />
+          <Property Name="id_zakaza" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="zakaz">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id_sotrudnika" Type="int" Nullable="false" />
+          <Property Name="id_TC" Type="int" Nullable="false" />
+          <Property Name="A" Type="varchar" Nullable="false" MaxLength="11" />
+          <Property Name="B" Type="varchar" Nullable="false" MaxLength="11" />
+        </EntityType>
+        <Association Name="vizov_ibfk_1">
+          <End Role="tip_vizova" Type="Хранилище tax2Model.tip_vizova" Multiplicity="1" />
+          <End Role="vizov" Type="Хранилище tax2Model.vizov" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tip_vizova">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="vizov">
+              <PropertyRef Name="id_tip_vizova" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="vizov_ibfk_2">
+          <End Role="zakaz" Type="Хранилище tax2Model.zakaz" Multiplicity="1" />
+          <End Role="vizov" Type="Хранилище tax2Model.vizov" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="zakaz">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="vizov">
+              <PropertyRef Name="id_zakaza" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="vizov_ibfk_3">
+          <End Role="sotrudnik" Type="Хранилище tax2Model.sotrudnik" Multiplicity="1" />
+          <End Role="vizov" Type="Хранилище tax2Model.vizov" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sotrudnik">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="vizov">
+              <PropertyRef Name="id_sotrudnika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="zakaz_ibfk_1">
+          <End Role="sotrudnik" Type="Хранилище tax2Model.sotrudnik" Multiplicity="1" />
+          <End Role="zakaz" Type="Хранилище tax2Model.zakaz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sotrudnik">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="zakaz">
+              <PropertyRef Name="id_sotrudnika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="zakaz_ibfk_2">
+          <End Role="tc" Type="Хранилище tax2Model.tc" Multiplicity="1" />
+          <End Role="zakaz" Type="Хранилище tax2Model.zakaz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tc">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="zakaz">
+              <PropertyRef Name="id_TC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="tax2Model" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="tax2Entities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="sotrudnik" EntityType="tax2Model.sotrudnik" />
+          <EntitySet Name="tc" EntityType="tax2Model.tc" />
+          <EntitySet Name="tip_vizova" EntityType="tax2Model.tip_vizova" />
+          <EntitySet Name="vizov" EntityType="tax2Model.vizov" />
+          <EntitySet Name="zakaz" EntityType="tax2Model.zakaz" />
+          <AssociationSet Name="zakaz_ibfk_1" Association="tax2Model.zakaz_ibfk_1">
+            <End Role="sotrudnik" EntitySet="sotrudnik" />
+            <End Role="zakaz" EntitySet="zakaz" />
+          </AssociationSet>
+          <AssociationSet Name="zakaz_ibfk_2" Association="tax2Model.zakaz_ibfk_2">
+            <End Role="tc" EntitySet="tc" />
+            <End Role="zakaz" EntitySet="zakaz" />
+          </AssociationSet>
+          <AssociationSet Name="vizov_ibfk_1" Association="tax2Model.vizov_ibfk_1">
+            <End Role="tip_vizova" EntitySet="tip_vizova" />
+            <End Role="vizov" EntitySet="vizov" />
+          </AssociationSet>
+          <AssociationSet Name="vizov_ibfk_2" Association="tax2Model.vizov_ibfk_2">
+            <End Role="zakaz" EntitySet="zakaz" />
+            <End Role="vizov" EntitySet="vizov" />
+          </AssociationSet>
+          <AssociationSet Name="vizov_ibfk_3" Association="tax2Model.vizov_ibfk_3">
+            <End Role="sotrudnik" EntitySet="sotrudnik" />
+            <End Role="vizov" EntitySet="vizov" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="sotrudnik">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="first_name" Type="String" Nullable="false" />
+          <Property Name="last_name" Type="String" Nullable="false" />
+          <Property Name="doljnost" Type="String" Nullable="false" />
+          <NavigationProperty Name="zakaz" Relationship="tax2Model.zakaz_ibfk_1" FromRole="sotrudnik" ToRole="zakaz" />
+          <NavigationProperty Name="vizov" Relationship="tax2Model.vizov_ibfk_3" FromRole="sotrudnik" ToRole="vizov" />
+        </EntityType>
+        <EntityType Name="tc">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="color" Type="String" Nullable="false" />
+          <Property Name="nomer" Type="Int32" Nullable="false" />
+          <Property Name="marka" Type="String" Nullable="false" />
+          <NavigationProperty Name="zakaz" Relationship="tax2Model.zakaz_ibfk_2" FromRole="tc" ToRole="zakaz" />
+        </EntityType>
+        <EntityType Name="tip_vizova">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" />
+          <Property Name="vxod_vixod" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="vizov" Relationship="tax2Model.vizov_ibfk_1" FromRole="tip_vizova" ToRole="vizov" />
+        </EntityType>
+        <EntityType Name="vizov">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="date" Type="DateTime" Nullable="false" />
+          <Property Name="id_sotrudnika" Type="Int32" Nullable="false" />
+          <Property Name="id_tip_vizova" Type="Int32" Nullable="false" />
+          <Property Name="id_zakaza" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tip_vizova" Relationship="tax2Model.vizov_ibfk_1" FromRole="vizov" ToRole="tip_vizova" />
+          <NavigationProperty Name="zakaz" Relationship="tax2Model.vizov_ibfk_2" FromRole="vizov" ToRole="zakaz" />
+          <NavigationProperty Name="sotrudnik" Relationship="tax2Model.vizov_ibfk_3" FromRole="vizov" ToRole="sotrudnik" />
+        </EntityType>
+        <EntityType Name="zakaz">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="id_sotrudnika" Type="Int32" Nullable="false" />
+          <Property Name="id_TC" Type="Int32" Nullable="false" />
+          <Property Name="A" Type="String" Nullable="false" />
+          <Property Name="B" Type="String" Nullable="false" />
+          <NavigationProperty Name="sotrudnik" Relationship="tax2Model.zakaz_ibfk_1" FromRole="zakaz" ToRole="sotrudnik" />
+          <NavigationProperty Name="tc" Relationship="tax2Model.zakaz_ibfk_2" FromRole="zakaz" ToRole="tc" />
+          <NavigationProperty Name="vizov" Relationship="tax2Model.vizov_ibfk_2" FromRole="zakaz" ToRole="vizov" />
+        </EntityType>
+        <Association Name="zakaz_ibfk_1">
+          <End Role="sotrudnik" Type="tax2Model.sotrudnik" Multiplicity="1" />
+          <End Role="zakaz" Type="tax2Model.zakaz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sotrudnik">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="zakaz">
+              <PropertyRef Name="id_sotrudnika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="zakaz_ibfk_2">
+          <End Role="tc" Type="tax2Model.tc" Multiplicity="1" />
+          <End Role="zakaz" Type="tax2Model.zakaz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tc">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="zakaz">
+              <PropertyRef Name="id_TC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="vizov_ibfk_1">
+          <End Role="tip_vizova" Type="tax2Model.tip_vizova" Multiplicity="1" />
+          <End Role="vizov" Type="tax2Model.vizov" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tip_vizova">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="vizov">
+              <PropertyRef Name="id_tip_vizova" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="vizov_ibfk_2">
+          <End Role="zakaz" Type="tax2Model.zakaz" Multiplicity="1" />
+          <End Role="vizov" Type="tax2Model.vizov" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="zakaz">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="vizov">
+              <PropertyRef Name="id_zakaza" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="vizov_ibfk_3">
+          <End Type="tax2Model.sotrudnik" Role="sotrudnik" Multiplicity="1" />
+          <End Type="tax2Model.vizov" Role="vizov" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sotrudnik">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="vizov">
+              <PropertyRef Name="id_sotrudnika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище tax2ModelContainer" CdmEntityContainer="tax2Entities">
+          <EntitySetMapping Name="sotrudnik">
+            <EntityTypeMapping TypeName="tax2Model.sotrudnik">
+              <MappingFragment StoreEntitySet="sotrudnik">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="doljnost" ColumnName="doljnost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tc">
+            <EntityTypeMapping TypeName="tax2Model.tc">
+              <MappingFragment StoreEntitySet="tc">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="color" ColumnName="color" />
+                <ScalarProperty Name="nomer" ColumnName="nomer" />
+                <ScalarProperty Name="marka" ColumnName="marka" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tip_vizova">
+            <EntityTypeMapping TypeName="tax2Model.tip_vizova">
+              <MappingFragment StoreEntitySet="tip_vizova">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="vxod_vixod" ColumnName="vxod/vixod" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vizov">
+            <EntityTypeMapping TypeName="tax2Model.vizov">
+              <MappingFragment StoreEntitySet="vizov">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="id_sotrudnika" ColumnName="id_sotrudnika" />
+                <ScalarProperty Name="id_tip_vizova" ColumnName="id_tip_vizova" />
+                <ScalarProperty Name="id_zakaza" ColumnName="id_zakaza" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="zakaz">
+            <EntityTypeMapping TypeName="tax2Model.zakaz">
+              <MappingFragment StoreEntitySet="zakaz">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_sotrudnika" ColumnName="id_sotrudnika" />
+                <ScalarProperty Name="id_TC" ColumnName="id_TC" />
+                <ScalarProperty Name="A" ColumnName="A" />
+                <ScalarProperty Name="B" ColumnName="B" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

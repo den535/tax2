@@ -1,0 +1,43 @@
+﻿@model tax2.vizov
+
+@{
+    ViewBag.Title = "Детали";
+}
+
+<h2>Детали</h2>
+
+<fieldset>
+    <legend>vizov</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.date)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.date)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.id_sotrudnika)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.id_sotrudnika)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.tip_vizova.name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.tip_vizova.name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.zakaz.A)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.zakaz.A)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
