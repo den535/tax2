@@ -40,6 +40,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MySql.Data, Version=6.5.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files\MySQL\MySQL Connector Net 6.5.4\Assemblies\v4.0\MySql.Data.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -186,6 +190,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\sotrudnikController.cs" />
+    <Compile Include="Controllers\SQLController.cs" />
     <Compile Include="Controllers\tcController.cs" />
     <Compile Include="Controllers\tip_vizovaController.cs" />
     <Compile Include="Controllers\vizovController.cs" />
@@ -513,6 +518,8 @@
     <Content Include="Views\vizov\Create.cshtml" />
     <Content Include="Views\vizov\Edit.cshtml" />
     <Content Include="Views\vizov\Delete.cshtml" />
+    <Content Include="Views\SQL\Index.cshtml" />
+    <Content Include="Views\SQL\Result.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
