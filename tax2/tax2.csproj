@@ -520,6 +520,14 @@
     <Content Include="Views\vizov\Delete.cshtml" />
     <Content Include="Views\SQL\Index.cshtml" />
     <Content Include="Views\SQL\Result.cshtml" />
+    <Content Include="Views\SQL\Result1.cshtml" />
+    <Content Include="Views\SQL\Result2.cshtml" />
+    <Content Include="Views\SQL\Index1.cshtml" />
+    <Content Include="Views\SQL\Index2.cshtml" />
+    <Content Include="Views\SQL\Index3.cshtml" />
+    <Content Include="Views\SQL\Result3.cshtml" />
+    <Content Include="Views\SQL\Index4.cshtml" />
+    <Content Include="Views\SQL\Result4.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
