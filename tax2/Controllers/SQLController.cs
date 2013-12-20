@@ -19,6 +19,10 @@ namespace tax2.Controllers
         public DateTime date { get; set; }
         public string A { get; set; }
         public string name { get; set; }
+        public string doljnost { get; set; }
+        public string FIRST { get; set; }
+        public string SECOND { get; set; }
+
     }
 
 
@@ -27,6 +31,95 @@ namespace tax2.Controllers
         tax2Entities db = new tax2Entities();
         //
         // GET: /SQL/
+        public ActionResult Index6()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Index6(string str)
+        {
+            ObjectContext name = new ObjectContext("name=tax2Entities");
+            Object[] parmetrers = new object[]
+           {
+               new MySqlParameter("name","1"),
+               new MySqlParameter("val","1")
+        };
+            TempData["result"] = name.ExecuteStoreQuery<ResultType>(
+                @"
+ SELECT  'Voditel' AS 
+SECOND
+FROM sotrudnik
+UNION (
+SELECT DISTINCT sotrudnik.last_name AS 
+SECOND
+FROM sotrudnik
+WHERE sotrudnik.doljnost = 'Voditel'
+)
+  
+
+
+                ");
+
+            return RedirectToAction("Result6");
+        }
+
+        public ActionResult Result6()
+        {
+            ViewBag.result = TempData["result"];
+            TempData.Keep();
+            return View();
+        }
+
+
+
+
+
+
+        public ActionResult Index5()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Index5(string str)
+        {
+            ObjectContext name = new ObjectContext("name=tax2Entities");
+            Object[] parmetrers = new object[]
+           {
+               new MySqlParameter("name","1"),
+               new MySqlParameter("val","1")
+        };
+            TempData["result"] = name.ExecuteStoreQuery<ResultType>(
+                @"
+ SELECT  'dispetcher' AS 
+FIRST 
+FROM sotrudnik
+UNION (
+SELECT DISTINCT sotrudnik.last_name AS 
+FIRST 
+FROM sotrudnik
+WHERE sotrudnik.doljnost = 'dispetcher'
+)
+
+                ");
+
+            return RedirectToAction("Result5");
+        }
+
+        public ActionResult Result5()
+        {
+            ViewBag.result = TempData["result"];
+            TempData.Keep();
+            return View();
+        }
+
+
+
+
+
+
+
         public ActionResult Index4()
         {
             return View();
